@@ -26,23 +26,23 @@ sudo apt-get install -y build-essential vim imagemagick wget git-core htop libma
 sudo gem install passenger --no-ri --no-rdoc --update &&
 
 # Install Passenger/Nginx module
-sudo passenger-install-nginx-module --auto --auto-download &&
+sudo passenger-install-nginx-module --auto --auto-download
 
 # Create application dirs
-sudo mkdir -p /apps &&
+sudo mkdir -p /apps
 
 # Give deploy user access to application dirs
-sudo chown deploy: /apps &&
+sudo chown deploy: /apps
 
 # Install nginx init script and config file
-sudo mkdir -p /etc/init.d &&
-sudo mkdir -p /etc/nginx &&
-sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx" &&
-sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf" &&
-sudo chmod +x /etc/init.d/nginx &&
+sudo mkdir -p /etc/init.d
+sudo mkdir -p /etc/nginx
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx"
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf"
+sudo chmod +x /etc/init.d/nginx
 
 # Start nginx
-sudo /etc/init.d/nginx start &&
+sudo /etc/init.d/nginx start
 
 # Done!
 echo "Done! This server is now ready to host Ruby/Rails apps."
