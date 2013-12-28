@@ -33,4 +33,7 @@ sudo mkdir /apps
 sudo chown deploy: /apps
 
 # Install nginx init script and config file
-
+mkdir -p /etc/init.d
+mkdir -p /etc/nginx
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx"
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf"
