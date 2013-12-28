@@ -27,7 +27,7 @@ sudo gem install passenger --no-ri --no-rdoc
 sudo passenger-install-nginx-module --auto --auto-download &&
 
 # Create application dirs
-sudo mkdir /apps
+sudo mkdir -p /apps
 
 # Give deploy user access to application dirs
 sudo chown deploy: /apps
