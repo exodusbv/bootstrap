@@ -6,27 +6,24 @@ if [ ! -d /home/deploy ]; then
 fi
 
 # Add deploy to sudoers
-sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy" &&
+sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy"
 
 # Add public key file
-sudo su deploy -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash" &&
+sudo su deploy -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash"
 
 # Install Ruby
-sudo apt-add-repository ppa:brightbox/ruby-ng &&
-sudo apt-get update &&
-sudo apt-get install -y ruby1.9.1 &&
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install -y ruby1.9.1
 
 # Install bundler
-sudo gem install bundler --no-ri --no-rdoc --update &&
+sudo gem install bundler --no-ri --no-rdoc --update
 
 # Install support software
-sudo apt-get install -y build-essential vim imagemagick wget git-core htop libmagickwand-dev libcurl4-openssl-dev libpcre3-dev ruby-dev libssl0.9.8 libmysql-ruby libmysqlclient-dev nodejs mysql-server &&
+sudo apt-get install -y build-essential vim imagemagick wget git-core htop libmagickwand-dev libcurl4-openssl-dev libpcre3-dev ruby-dev libssl0.9.8 libmysql-ruby libmysqlclient-dev nodejs mysql-server
 
 # Install Passenger
-sudo gem install passenger --no-ri --no-rdoc --update &&
-
-# Install Passenger/Nginx module
-sudo passenger-install-nginx-module --auto --auto-download
+sudo gem install passenger --no-ri --no-rdoc --update
 
 # Create application dirs
 sudo mkdir -p /apps
@@ -41,8 +38,8 @@ sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx
 sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf"
 sudo chmod +x /etc/init.d/nginx
 
-# Start nginx
-sudo /etc/init.d/nginx start
+# Install Passenger/Nginx module
+sudo passenger-install-nginx-module --auto --auto-download
 
 # Done!
 echo "Done! This server is now ready to host Ruby/Rails apps."
