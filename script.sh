@@ -31,3 +31,6 @@ sudo mkdir /apps
 
 # Give deploy user access to application dirs
 sudo chown deploy: /apps
+
+# Install nginx init script and config file
+
