@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add deploy user
-sudo adduser deploy
+sudo adduser --disabled-password --gecos "" deploy
 
 # Add deploy to sudoers
 sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy"
