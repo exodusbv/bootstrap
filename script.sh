@@ -15,13 +15,13 @@ sudo apt-get update
 sudo apt-get install -y ruby1.9.1
 
 # Install bundler
-sudo gem install bundler
+sudo gem install bundler --no-ri --no-rdoc
 
 # Install support software
 sudo apt-get install -y build-essential vim imagemagick wget git-core htop libmagickwand-dev libcurl4-openssl-dev libpcre3-dev ruby-dev libssl0.9.8 libmysql-ruby libmysqlclient-dev nodejs mysql-server
 
 # Install Passenger
-sudo gem install passenger
+sudo gem install passenger --no-ri --no-rdoc
 
 # Install Passenger/Nginx module
 sudo passenger-install-nginx-module --auto --auto-download &&
@@ -33,7 +33,7 @@ sudo mkdir /apps
 sudo chown deploy: /apps
 
 # Install nginx init script and config file
-mkdir -p /etc/init.d
-mkdir -p /etc/nginx
+sudo mkdir -p /etc/init.d
+sudo mkdir -p /etc/nginx
 sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx"
 sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf"
