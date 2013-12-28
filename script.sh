@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Add deploy user
-sudo adduser --disabled-password --gecos "" deploy &&
+if [ ! -d /home/deploy ]; then
+  # Add deploy user
+  sudo adduser --disabled-password --gecos "" deploy
+fi
 
 # Add deploy to sudoers
 sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy" &&
