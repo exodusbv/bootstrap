@@ -1,39 +1,46 @@
 #!/bin/bash
 
 # Add deploy user
-sudo adduser --disabled-password --gecos "" deploy
+sudo adduser --disabled-password --gecos "" deploy &&
 
 # Add deploy to sudoers
-sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy"
+sudo sh -c "echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-deploy" &&
 
 # Add public key file
-sudo su deploy -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash"
+sudo su deploy -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash" &&
 
 # Install Ruby
-sudo apt-add-repository ppa:brightbox/ruby-ng
-sudo apt-get update
-sudo apt-get install -y ruby1.9.1
+sudo apt-add-repository ppa:brightbox/ruby-ng &&
+sudo apt-get update &&
+sudo apt-get install -y ruby1.9.1 &&
 
 # Install bundler
-sudo gem install bundler --no-ri --no-rdoc
+sudo gem install bundler --no-ri --no-rdoc --update &&
 
 # Install support software
-sudo apt-get install -y build-essential vim imagemagick wget git-core htop libmagickwand-dev libcurl4-openssl-dev libpcre3-dev ruby-dev libssl0.9.8 libmysql-ruby libmysqlclient-dev nodejs mysql-server
+sudo apt-get install -y build-essential vim imagemagick wget git-core htop libmagickwand-dev libcurl4-openssl-dev libpcre3-dev ruby-dev libssl0.9.8 libmysql-ruby libmysqlclient-dev nodejs mysql-server &&
 
 # Install Passenger
-sudo gem install passenger --no-ri --no-rdoc
+sudo gem install passenger --no-ri --no-rdoc --update &&
 
 # Install Passenger/Nginx module
 sudo passenger-install-nginx-module --auto --auto-download &&
 
 # Create application dirs
-sudo mkdir -p /apps
+sudo mkdir -p /apps &&
 
 # Give deploy user access to application dirs
-sudo chown deploy: /apps
+sudo chown deploy: /apps &&
 
 # Install nginx init script and config file
-sudo mkdir -p /etc/init.d
-sudo mkdir -p /etc/nginx
-sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx"
-sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf"
+sudo mkdir -p /etc/init.d &&
+sudo mkdir -p /etc/nginx &&
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.init.sh > /etc/init.d/nginx" &&
+sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx.conf > /etc/nginx/nginx.conf" &&
+sudo chmod +x /etc/init.d/nginx &&
+
+# Start nginx
+sudo /etc/init.d/nginx start &&
+
+# Done!
+echo "Done! This server is now ready to host Ruby/Rails apps."
