@@ -24,7 +24,7 @@ sudo apt-get install -y build-essential vim imagemagick wget git-core htop libma
 sudo gem install passenger
 
 # Install Passenger/Nginx module
-sudo passenger-install-nginx-module --auto --auto-download
+sudo passenger-install-nginx-module --auto --auto-download &&
 
 # Create application dirs
 sudo mkdir /apps
