@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # Ask for deploy user name
-read -s "Deploy user name [deploy]: " deploy_user
-if [ ! -n "$deploy_user" ]; then
-  deploy_user=deploy
-fi
+read -s "Deploy user name [deploy]: " username
+deploy_user=${$username:-deploy}
 
 # Ask for MySQL root password
 read -p -s "MySQL root password: " mysql_root_password
