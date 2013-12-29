@@ -2,7 +2,9 @@
 
 # Ask for deploy user name
 read -p "Deploy user name [deploy]: " username
-deploy_user=${$username:-deploy}
+deploy_user=${username:-deploy}
+
+echo -n ""
 
 # Ask for MySQL root password
 read -p "MySQL root password: " -s mysql_root_password
@@ -17,7 +19,7 @@ if [ ! -d /home/$deploy_user ]; then
 fi
 
 # Add deploy to sudoers
-sudo sh -c "echo '$deploy_User ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-$deploy_user"
+sudo sh -c "echo '$deploy_user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-$deploy_user"
 
 # Add public key file
 sudo su $deploy_user -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash"
