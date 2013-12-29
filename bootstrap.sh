@@ -25,6 +25,7 @@ sudo sh -c "echo '$deploy_user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-$depl
 sudo su $deploy_user -c "curl -s ssh.keychain.io/mail@marceldegraaf.net/install | bash"
 
 # Install Ruby
+sudo apt-get install -y python-software-properties
 sudo apt-add-repository ppa:brightbox/ruby-ng
 sudo apt-get update
 sudo apt-get install -y ruby1.9.1
