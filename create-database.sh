@@ -30,8 +30,8 @@ fi
 password=`openssl rand -hex 16`
 
 mysql -u root -p$mysql_root_password -h localhost -e "create user '$user_name'@'localhost' identified by '$password';"
-mysql -u root -p$mysql_root_password -h localhost -e "create database '$database_name';"
-mysql -u root -p$mysql_root_password -h localhost -e "grant all privileges on '$database_name'.* to '$user_name'@'localhost';"
+mysql -u root -p$mysql_root_password -h localhost -e "create database $database_name;"
+mysql -u root -p$mysql_root_password -h localhost -e "grant all privileges on $database_name.* to '$user_name'@'localhost';"
 mysql -u root -p$mysql_root_password -h localhost -e "flush privileges;"
 
 echo ""
