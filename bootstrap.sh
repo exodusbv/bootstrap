@@ -4,7 +4,7 @@
 echo -n "Deploy user name [deploy]: "
 read deploy_user
 if [ ! -n "$deploy_user" ]; then
-  deploy_user="deploy"
+  deploy_user=deploy
 fi
 
 # Ask for MySQL root password
