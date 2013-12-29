@@ -1,15 +1,13 @@
 #!/bin/bash
 
 # Ask for deploy user name
-echo -n "Deploy user name [deploy]: "
-read deploy_user
+read -s "Deploy user name [deploy]: " deploy_user
 if [ ! -n "$deploy_user" ]; then
   deploy_user=deploy
 fi
 
 # Ask for MySQL root password
-echo -n "MySQL root password: "
-read mysql_root_password
+read -p -s "MySQL root password: " mysql_root_password
 if [ ! -n "$mysql_root_password" ]; then
   echo "MySQL root password must be given. Cannot continue."
   exit 1
