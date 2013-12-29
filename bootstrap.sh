@@ -57,6 +57,7 @@ sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/files/nginx
 sudo chmod +x /etc/init.d/nginx
 
 # Install create-database script
+sudo rm -f /usr/bin/create-database
 sudo su -c "curl -s https://raw.github.com/exodusbv/bootstrap/master/create-database.sh > /usr/bin/create-database"
 sudo chmod go+rx /usr/bin/create-database
 
